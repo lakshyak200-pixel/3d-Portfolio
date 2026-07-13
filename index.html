@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smooth Scroll Animation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            height: 775vh;
+            /* Make the page long enough to scroll 522 frames */
+            color: white;
+            font-family: sans-serif;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain;
+            /* ensures the whole image is visible */
+            z-index: 1;
+            /* Maximize visual quality */
+            filter: contrast(1.05) saturate(1.1) brightness(1.02);
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
+        .spacer {
+            height: 775vh;
+        }
+
+        html.lenis,
+        html.lenis body {
+            height: auto;
+        }
+
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+
+        .lenis.lenis-smooth [data-lenis-prevent] {
+            overscroll-behavior: contain;
+        }
+
+        .lenis.lenis-stopped {
+            overflow: hidden;
+        }
+    </style>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+
+<body>
+
+    <canvas id="scroll-animation"></canvas>
+
+    <div class="relative z-10 w-full min-h-[775vh] pointer-events-none">
+        <!-- Hero Section -->
+        <section class="h-screen flex flex-col relative overflow-hidden bg-transparent">
+            <!-- Navbar -->
+            <nav class="flex justify-between items-center px-4 lg:px-8 py-8 z-20 pointer-events-auto">
+                <div class="flex items-center gap-4 font-bold tracking-tighter"
+                    style="font-family: 'Archivo', sans-serif; font-stretch: 125%;">
+                    <span class="drop-shadow-md">LAKSHYA KHANDELWAL</span>
+                </div>
+                <div class="flex gap-10 items-center text-sm font-medium tracking-wide">
+                    <a href="#about" class="cursor-pointer hover:text-gray-400 transition-colors">About</a>
+                    <a href="#about"
+                        class="cursor-pointer hover:text-gray-400 transition-colors">Certificates</a>
+                    <a href="#projects-target" class="cursor-pointer hover:text-gray-400 transition-colors">Projects</a>
+                    <a href="#section-4-top" class="cursor-pointer hover:text-gray-400 transition-colors">What I know</a>
+                    <a href="#contact" class="hover:text-gray-400 transition-colors">Contact</a>
+                </div>
+            </nav>
+
+            <!-- Main Content Area -->
+            <main
+                class="flex-1 w-full max-w-[1600px] mx-auto flex items-center relative px-4 lg:px-8 z-20 pointer-events-auto">
+
+                <!-- Left Column -->
+                <div class="w-full flex flex-col relative z-10">
+                    <div class="flex flex-col items-center w-fit"
+                        style="font-family: 'Archivo', sans-serif; font-stretch: 125%;">
+                        <h2
+                            class="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-white mb-2 uppercase text-center">
+                            Hi, I'm
+                        </h2>
+                        <h1
+                            class="text-5xl sm:text-6xl lg:text-[80px] font-bold tracking-tighter leading-[0.8] uppercase text-[#D6C9F5] pb-2 text-center">
+                            LAKSHYA
+                        </h1>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div
+                    class="absolute right-4 lg:right-16 top-1/2 -translate-y-1/2 flex flex-col items-end z-0 text-right">
+                    <h2 class="text-4xl lg:text-[50px] font-black tracking-tighter leading-[0.75] uppercase text-white">
+                        A CREATIVE
+                    </h2>
+                    <h2
+                        class="text-4xl lg:text-[50px] font-black tracking-tighter leading-[0.75] uppercase bg-gradient-to-b from-black via-[#D6C9F5] via-40% to-[#D6C9F5] bg-clip-text text-transparent pb-1">
+                        DESIGNER
+                    </h2>
+                    <h2
+                        class="text-4xl lg:text-[50px] font-black tracking-tighter leading-[0.75] uppercase bg-gradient-to-b from-black via-white via-40% to-white bg-clip-text text-transparent pb-2">
+                        DEVELOPER
+                    </h2>
+                </div>
+
+                <!-- Social Logos -->
+                <div
+                    class="absolute bottom-10 right-4 lg:right-16 flex gap-6 items-center text-white pointer-events-auto">
+                    <a href="https://github.com/lakshyak200-pixel" target="_blank"
+                        class="hover:text-[#D6C9F5] transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-6 h-6">
+                            <path
+                                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                            <path d="M9 18c-4.51 2-5-2-7-2" />
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/lakshyak277/" target="_blank"
+                        class="hover:text-[#D6C9F5] transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-6 h-6">
+                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/lakshya-khandelwal-44ab421b0" target="_blank"
+                        class="hover:text-[#D6C9F5] transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-6 h-6">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                            <rect width="4" height="12" x="2" y="9" />
+                            <circle cx="4" cy="4" r="2" />
+                        </svg>
+                    </a>
+                </div>
+
+            </main>
+
+        </section>
+
+        <!-- Section 2: About Me -->
+        <section id="about"
+            class="w-full h-[200vh] px-10 pt-24 pb-[8cm] mt-[200vh] flex items-start justify-end relative pointer-events-auto">
+            <div class="w-[90%] md:w-[40%] max-w-[500px] mr-4 lg:mr-10 z-10 flex flex-col gap-24 text-white sticky top-[15vh]">
+                <div>
+                    <h3 class="overlap-text text-3xl md:text-4xl mb-6 font-black uppercase text-[#D6C9F5]"
+                        style="font-family: 'DM Sans', sans-serif;">
+                        ABOUT ME
+                    </h3>
+                    <p class="text-sm lg:text-base leading-[1.8] text-gray-300 font-light">
+                        Hey, I'm Lakshya - an Al/ML student who likes making computers do the boring parts. I build
+                        websites using Al automation, and I'm a big believer in iterating fast: ship something rough,
+                        see what breaks, fix it, repeat. When I'm not building, I'm grinding through DSA problems to
+                        keep my fundamentals sharp.
+                    </p>
+                </div>
+                <div id="certificates">
+                    <h3 class="overlap-text text-3xl md:text-4xl mb-6 font-black uppercase text-[#D6C9F5]"
+                        style="font-family: 'DM Sans', sans-serif;">
+                        CERTIFICATES
+                    </h3>
+                    <div class="flex flex-col gap-4 text-sm lg:text-base text-gray-300 font-light">
+                        <a href="microsoft%20azure%20fundamentals%20certificate.jpg" target="_blank" class="block border border-white/20 p-4 rounded-sm transition-colors cursor-pointer hover:bg-white/10 hover:text-white">
+                            Azure Fundamentals
+                        </a>
+                        <a href="HackCrus%20hackathon.jpg" target="_blank" class="block border border-white/20 p-4 rounded-sm transition-colors cursor-pointer hover:bg-white/10 hover:text-white">
+                            HackCrux 2026
+                        </a>
+                        <a href="hp%20ai%20for%20beginners.jpg" target="_blank" class="block border border-white/20 p-4 rounded-sm transition-colors cursor-pointer hover:bg-white/10 hover:text-white">
+                            Hp Ai For Beginners
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 3: Projects -->
+        <section id="projects"
+            class="w-full h-[300vh] pt-24 pb-32 px-4 md:px-10 relative flex flex-col items-center pointer-events-auto">
+            <div id="projects-target" class="absolute w-full top-[120vh] pointer-events-none"></div>
+            <h3 class="overlap-text sec3-title sticky top-[10vh] text-5xl md:text-6xl lg:text-[5.5rem] mb-12 z-20 font-black uppercase text-[#D6C9F5]"
+                style="font-family: 'DM Sans', sans-serif;">
+                MY PROJECTS
+            </h3>
+            <div class="w-full max-w-[1200px] sticky top-[32vh] overflow-hidden flex min-h-[70vh]">
+                <div
+                    class="sec3-grid w-full grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-8 absolute top-0 left-0 pointer-events-auto">
+                    <a href="https://farmer-app-pouo.onrender.com/" target="_blank"
+                        class="sec3-card block w-[75%] max-w-[320px] mx-auto aspect-[3/4] bg-[#4B1E8C] rounded-sm p-6 flex flex-col items-center justify-center relative overflow-hidden transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(214,201,245,0.4)] cursor-pointer">
+                        <h2
+                            class="text-2xl lg:text-3xl font-black tracking-tighter leading-[1.1] text-center uppercase text-[#F5F3FA] px-2 w-full break-words">
+                            KHET<br />DRASHTI
+                        </h2>
+                    </a>
+                    <a href="https://dsa-hint.onrender.com/" target="_blank"
+                        class="sec3-card block w-[75%] max-w-[320px] mx-auto aspect-[3/4] bg-[#4B1E8C] rounded-sm p-6 flex flex-col items-center justify-center relative overflow-hidden transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(214,201,245,0.4)] cursor-pointer">
+                        <h2
+                            class="text-2xl lg:text-3xl font-black tracking-tighter leading-[1.1] text-center uppercase text-[#F5F3FA] px-2 w-full break-words">
+                            DSA HINT<br />GENERATOR
+                        </h2>
+                    </a>
+                    <a href="#" target="_blank"
+                        class="sec3-card block w-[75%] max-w-[320px] mx-auto aspect-[3/4] bg-[#4B1E8C] rounded-sm p-6 flex flex-col items-center justify-center relative overflow-hidden transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(214,201,245,0.4)] cursor-pointer">
+                        <h2
+                            class="text-2xl lg:text-3xl font-black tracking-tighter leading-[1.1] text-center uppercase text-[#F5F3FA] px-2 w-full break-words">
+                            UPCOMING...
+                        </h2>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: What I Know -->
+        <section id="skills" class="w-full h-[400vh] relative pointer-events-auto">
+            <div id="section-4-top" class="absolute top-[40vh] left-0 w-full h-1"></div>
+            <div
+                class="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-end px-10 md:px-20 pointer-events-none">
+
+                <div class="sec4-title absolute top-20 w-full left-0 text-center">
+                    <h2 class="overlap-text text-5xl md:text-6xl lg:text-7xl flex justify-center font-black uppercase text-[#D6C9F5]"
+                        style="font-family: 'DM Sans', sans-serif;">
+                        WHAT I KNOW
+                    </h2>
+                </div>
+
+                <div class="relative w-48 h-72 flex-shrink-0 flex items-center justify-center">
+                    <div
+                        class="sec4-box1 absolute w-48 h-72 bg-[#F5F3FA] text-black flex flex-col items-start justify-center rounded-sm shadow-lg pointer-events-auto p-5">
+                        <h3 class="font-bold text-center text-sm uppercase tracking-widest opacity-80 mb-4 w-full">
+                            Programming<br />Language</h3>
+                        <ol class="text-xs space-y-2 font-medium w-full px-2">
+                            <li>1- C</li>
+                            <li>2- C++</li>
+                            <li>3- Java</li>
+                            <li>4- Python</li>
+                        </ol>
+                    </div>
+                    <div
+                        class="sec4-box2 absolute w-48 h-72 bg-[#F5F3FA] text-black flex flex-col items-start justify-center rounded-sm shadow-lg pointer-events-auto p-5">
+                        <h3 class="font-bold text-center text-sm uppercase tracking-widest opacity-80 mb-4 w-full">
+                            Web<br />Development</h3>
+                        <ol class="text-xs space-y-2 font-medium w-full px-2">
+                            <li>1- HTML</li>
+                            <li>2- CSS</li>
+                            <li>3- JavaScript</li>
+                            <li>4- React</li>
+                            <li>5- REST APIs</li>
+                        </ol>
+                    </div>
+                    <div
+                        class="sec4-box3 absolute w-48 h-72 bg-[#F5F3FA] text-black flex flex-col items-start justify-center rounded-sm shadow-lg pointer-events-auto p-5">
+                        <h3 class="font-bold text-center text-sm uppercase tracking-widest opacity-80 mb-4 w-full">
+                            Database</h3>
+                        <ol class="text-xs space-y-2 font-medium w-full px-2">
+                            <li>1- SQL</li>
+                            <li>2- MongoDB</li>
+                        </ol>
+                    </div>
+                    <div
+                        class="sec4-box4 absolute w-48 h-72 bg-[#F5F3FA] text-black flex flex-col items-start justify-center rounded-sm shadow-lg pointer-events-auto p-5">
+                        <h3 class="font-bold text-center text-[11px] uppercase tracking-widest opacity-80 mb-4 w-full">
+                            Currently<br />Learning</h3>
+                        <ol class="text-xs space-y-2 font-medium w-full px-2">
+                            <li>1- DSA with Java</li>
+                            <li>2- AI/ML</li>
+                            <li>3- RAG</li>
+                            <li>4- LLMs</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="w-full py-24 relative pointer-events-auto">
+            <div
+                class="absolute top-[2cm] right-10 lg:right-24 text-sm font-medium tracking-wider flex flex-col items-end gap-1 text-white">
+                <a href="mailto:Lakshyak200@gmail.com"
+                    class="opacity-70 hover:opacity-100 transition-opacity">Lakshyak200@gmail.com</a>
+                <div class="relative flex justify-end group z-50 pointer-events-auto mt-1">
+                    <button class="flex items-center gap-2 opacity-70 hover:opacity-100 transition-all cursor-pointer text-white bg-white/5 hover:bg-white/10 py-1.5 px-3 rounded-sm border border-white/20" 
+                          title="Click to copy"
+                          onclick="navigator.clipboard.writeText('9045619131'); const msg = this.nextElementSibling; msg.style.opacity = 1; setTimeout(() => msg.style.opacity = 0, 2000);">
+                        <span>9045619131</span>
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    </button>
+                    <span class="absolute -top-8 right-0 text-xs text-[#D6C9F5] opacity-0 transition-opacity duration-300 pointer-events-none whitespace-nowrap bg-black/60 px-2 py-1 rounded">Copied!</span>
+                </div>
+            </div>
+            <div
+                class="w-full flex flex-col md:flex-row items-center justify-end px-10 md:pl-40 lg:pl-64 md:pr-12 lg:pr-32 gap-12 md:gap-16 lg:gap-24 relative">
+                <div
+                    class="flex flex-col justify-center items-start md:items-end md:text-right h-full flex-1 md:flex-none">
+                    <h2
+                        class="text-[4rem] sm:text-[5rem] md:text-[6rem] lg:text-[7rem] font-black uppercase tracking-[-0.05em] leading-[0.75] flex flex-col items-start md:items-end mt-4 mb-6 text-white">
+                        <span class="relative z-[4] drop-shadow-[0_15px_15px_rgba(0,0,0,1)]">WANT TO</span>
+                        <span class="text-[#D6C9F5] relative z-[3] drop-shadow-[0_15px_15px_rgba(0,0,0,1)]">START</span>
+                        <span class="relative z-[2] drop-shadow-[0_15px_15px_rgba(0,0,0,1)]">A NEW</span>
+                        <span class="text-[#D6C9F5] relative z-[1]">PROJECT.</span>
+                    </h2>
+                    <p class="text-base md:text-lg font-light tracking-wide mt-6 opacity-70 text-white">
+                        Or just say hello.
+                    </p>
+                </div>
+
+                <form class="flex-1 flex flex-col justify-center h-full max-w-md w-full gap-12"
+                    onsubmit="event.preventDefault(); window.location.href = 'mailto:lakshyak200@gmail.com?subject=New project inquiry&body=Message...'">
+                    <div class="w-full">
+                        <div class="flex items-center justify-between pb-4">
+                            <input type="text" required placeholder="Name"
+                                class="bg-transparent outline-none text-white placeholder:text-white/40 text-sm font-medium tracking-wide flex-1 w-full" />
+                        </div>
+                        <div class="w-full h-[1px] bg-white"></div>
+                    </div>
+                    <div class="w-full">
+                        <div class="flex items-center justify-between pb-4">
+                            <input type="email" required placeholder="Email Address"
+                                class="bg-transparent outline-none text-white placeholder:text-white/40 text-sm font-medium tracking-wide flex-1 w-full" />
+                        </div>
+                        <div class="w-full h-[1px] bg-white"></div>
+                    </div>
+                    <div class="w-full">
+                        <div class="flex items-start justify-between pb-4">
+                            <textarea placeholder="Message" required rows="4"
+                                class="bg-transparent outline-none text-white placeholder:text-white/40 text-sm font-medium tracking-wide flex-1 w-full resize-none"></textarea>
+                        </div>
+                        <div class="w-full h-[1px] bg-white"></div>
+                    </div>
+                    <div class="w-full flex justify-end">
+                        <button type="submit"
+                            class="text-white hover:opacity-70 transition-opacity flex items-center gap-2 text-lg font-light">
+                            Send
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="w-full flex justify-end items-center px-10 py-10 z-20 mt-12">
+                <div class="flex gap-8 items-center text-gray-400 pr-4 lg:pr-10 translate-y-[3cm]">
+                    <a href="https://github.com/lakshyak200-pixel" target="_blank"
+                        class="hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-5 h-5">
+                            <path
+                                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                            <path d="M9 18c-4.51 2-5-2-7-2" />
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/lakshyak277/" target="_blank"
+                        class="hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-5 h-5">
+                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/lakshya-khandelwal-44ab421b0" target="_blank"
+                        class="hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-5 h-5">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                            <rect width="4" height="12" x="2" y="9" />
+                            <circle cx="4" cy="4" r="2" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script>
+        // Overlapping text effect
+        document.addEventListener("DOMContentLoaded", () => {
+            const overlapElements = document.querySelectorAll('.overlap-text');
+            overlapElements.forEach(el => {
+                const text = el.textContent.trim();
+                el.textContent = ''; // clear original text
+                for (let i = 0; i < text.length; i++) {
+                    const span = document.createElement('span');
+                    span.textContent = text[i] === ' ' ? '\u00A0' : text[i];
+                    span.style.display = 'inline-block';
+                    span.style.position = 'relative';
+
+                    if (text[i] !== ' ') {
+                        // Apply overlap margin to all letters except the first one in a word
+                        if (i > 0 && text[i - 1] !== ' ') {
+                            span.style.marginLeft = '-0.15em';
+                        }
+                        // Cast a shadow to the left
+                        span.style.filter = 'drop-shadow(-6px 0px 5px rgba(0,0,0,0.8))';
+                    }
+                    el.appendChild(span);
+                }
+            });
+        });
+
+        // Disable automatic scroll restoration by the browser
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+
+        // Initialize Lenis
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+            infinite: false,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Canvas Sequence Animation
+        const canvas = document.getElementById('scroll-animation');
+        const context = canvas.getContext('2d');
+        const frameCount = 522;
+        let loadedCount = 0;
+
+        // Resize canvas to match screen and improve quality on high-DPI (Retina) displays
+        function resize() {
+            const dpr = window.devicePixelRatio || 1;
+            // Set actual internal canvas resolution
+            canvas.width = window.innerWidth * dpr;
+            canvas.height = window.innerHeight * dpr;
+            // Set CSS display size
+            canvas.style.width = `${window.innerWidth}px`;
+            canvas.style.height = `${window.innerHeight}px`;
+
+            // Enable high-quality image smoothing
+            context.imageSmoothingEnabled = true;
+            context.imageSmoothingQuality = 'high';
+
+            render(currentImageIndex);
+        }
+        window.addEventListener('resize', resize);
+
+        // Preload images
+        const images = new Array(frameCount);
+        const currentFrame = index => (
+            `images/ezgif-frame-${(index + 1).toString().padStart(3, '0')}.jpg`
+        );
+
+        // Load the first frame immediately for instant visual feedback
+        const firstImg = new Image();
+        firstImg.onload = () => {
+            loadedCount++;
+            images[0] = firstImg;
+            resize(); // Initial draw when first image loads
+
+            // Once the first frame is visible, load all remaining frames in the background
+            for (let i = 1; i < frameCount; i++) {
+                const img = new Image();
+                img.onload = () => {
+                    loadedCount++;
+                    // Re-render if the user has scrolled to this frame while it was loading
+                    if (currentImageIndex === i) {
+                        requestAnimationFrame(() => render(currentImageIndex));
+                    }
+                };
+                img.src = currentFrame(i);
+                images[i] = img;
+            }
+        };
+        firstImg.src = currentFrame(0);
+
+        let currentImageIndex = 0;
+
+        function render(targetIndex) {
+            let imgToDraw = images[targetIndex];
+
+            // If the exact frame isn't loaded yet, fallback to the nearest loaded frame
+            if (!imgToDraw || !imgToDraw.complete) {
+                imgToDraw = null;
+                // Search backward
+                for (let i = targetIndex; i >= 0; i--) {
+                    if (images[i] && images[i].complete && images[i].naturalWidth > 0) {
+                        imgToDraw = images[i];
+                        break;
+                    }
+                }
+            }
+
+            if (imgToDraw) {
+                // Calculate dimensions to completely fill the screen (cover)
+                const hRatio = canvas.width / imgToDraw.width;
+                const vRatio = canvas.height / imgToDraw.height;
+                const ratio = Math.max(hRatio, vRatio); // Using Math.max achieves object-fit: cover
+                const centerShift_x = (canvas.width - imgToDraw.width * ratio) / 2;
+
+                // If the image is taller than the screen, align it to the top instead of the center
+                // This prevents the top of the image (e.g. the character's hat) from getting cut off
+                let centerShift_y = (canvas.height - imgToDraw.height * ratio) / 2;
+                if (centerShift_y < 0) {
+                    centerShift_y = 0;
+                }
+
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                context.drawImage(imgToDraw, 0, 0, imgToDraw.width, imgToDraw.height,
+                    centerShift_x, centerShift_y, imgToDraw.width * ratio, imgToDraw.height * ratio);
+
+                // Cover up watermark with a black circle ONLY when Section 5 starts
+                const contactSec = document.getElementById("contact");
+                if (contactSec) {
+                    const rect = contactSec.getBoundingClientRect();
+                    if (rect.top < window.innerHeight) {
+                        // Smoothly fade it in as Section 5 scrolls up
+                        let alpha = 1 - (rect.top / window.innerHeight);
+                        alpha = Math.max(0, Math.min(1, alpha * 2)); // Reaches full opacity halfway up
+
+                        const currentDpr = window.devicePixelRatio || 1;
+                        context.fillStyle = `rgba(0, 0, 0, ${alpha})`;
+                        context.beginPath();
+                        context.arc(canvas.width - 100 * currentDpr, canvas.height - 20 * currentDpr, 90 * currentDpr, 0, 2 * Math.PI);
+                        context.fill();
+                    }
+                }
+
+            } else {
+                // Keep canvas transparent while loading the first frame
+                context.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        }
+
+        // Handle Scroll
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop;
+            const maxScrollTop = document.documentElement.scrollHeight - window.innerHeight;
+
+            if (maxScrollTop <= 0) return;
+
+            const scrollFraction = scrollTop / maxScrollTop;
+            const frameIndex = Math.min(
+                frameCount - 1,
+                Math.max(0, Math.floor(scrollFraction * frameCount))
+            );
+
+            if (frameIndex !== currentImageIndex) {
+                currentImageIndex = frameIndex;
+                requestAnimationFrame(() => render(currentImageIndex));
+            }
+        });
+
+        // --- GSAP ScrollTrigger Animations ---
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Section 3: Entire section scroll sequence
+        const tl3 = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#projects",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 1
+            }
+        });
+
+        // Ensure starting state is clean
+        gsap.set(".sec3-title", { filter: "blur(0px)" });
+        gsap.set(".sec3-grid", { filter: "blur(0px)" });
+        gsap.set(".sec3-card", { y: "100vh", opacity: 0 }); // Start cards way below the screen
+
+        // 1. ENTRANCE (0% to 25%): As user scrolls, move the boxes up into position and blur canvas
+        tl3.to(".sec3-card", { y: "0vh", opacity: 1, duration: 0.25, stagger: 0.05 }, 0)
+           .to("canvas", { filter: "blur(20px)", duration: 0.25 }, 0)
+
+            // 2. IDLE (25% to 80%): Do nothing while user views the cards
+            .to({}, { duration: 0.55 }, 0.25)
+
+            // 3. EXIT (80% to 95%): Slide out and unblur canvas
+            .to(".sec3-title", { x: "-100vw", opacity: 0, duration: 0.15 }, 0.8)
+            .to(".sec3-grid", { x: "100vw", opacity: 0, duration: 0.15 }, 0.8)
+            .to("canvas", { filter: "blur(0px)", duration: 0.15 }, 0.8)
+
+            // 4. END PAD (95% to 100%)
+            .to({}, { duration: 0.05 }, 0.95);
+
+        // Section 4: Sequential boxes
+        // Initialize boxes out of view
+        gsap.set(".sec4-box1, .sec4-box2, .sec4-box3, .sec4-box4", { y: "-100vh", opacity: 0 });
+        gsap.set(".sec4-title", { opacity: 0 });
+
+        const tl4 = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#skills",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 1
+            }
+        });
+
+        // Fade in title quickly
+        tl4.to(".sec4-title", { opacity: 1, duration: 0.1 }, 0);
+
+        // Box 1
+        tl4.to(".sec4-box1", { y: "0vh", opacity: 1, rotation: -6, duration: 0.1 }, 0.15)
+            .to(".sec4-box1", { y: "100vh", opacity: 0, rotation: 15, duration: 0.1 }, 0.35);
+
+        // Box 2
+        tl4.to(".sec4-box2", { y: "0vh", opacity: 1, rotation: 4, duration: 0.1 }, 0.35)
+            .to(".sec4-box2", { y: "100vh", opacity: 0, rotation: -15, duration: 0.1 }, 0.55);
+
+        // Box 3
+        tl4.to(".sec4-box3", { y: "0vh", opacity: 1, rotation: -4, duration: 0.1 }, 0.55)
+            .to(".sec4-box3", { y: "100vh", opacity: 0, rotation: 15, duration: 0.1 }, 0.75);
+
+        // Box 4
+        tl4.to(".sec4-box4", { y: "0vh", opacity: 1, rotation: 6, duration: 0.1 }, 0.75)
+            .to(".sec4-box4", { y: "100vh", opacity: 0, rotation: -15, duration: 0.1 }, 0.95);
+
+        // Title fades out at end
+        tl4.to(".sec4-title", { opacity: 0, duration: 0.1 }, 0.85);
+
+        // Section 5: Blur Canvas after 3 seconds
+        let sec5BlurTween;
+        ScrollTrigger.create({
+            trigger: "#contact",
+            start: "top center",
+            onEnter: () => {
+                // Wait 1 second, then smoothly blur over 1.5 seconds
+                sec5BlurTween = gsap.to("canvas", { filter: "blur(12px)", duration: 1.5, delay: 1 });
+            },
+            onLeaveBack: () => {
+                // Cancel the delayed blur if they scroll up early, and fade the blur out
+                if (sec5BlurTween) sec5BlurTween.kill();
+                gsap.to("canvas", { filter: "blur(0px)", duration: 0.5, overwrite: "auto" });
+            }
+        });
+
+    </script>
+</body>
+
+</html>
