@@ -76,12 +76,12 @@
         <!-- Hero Section -->
         <section class="h-screen flex flex-col relative overflow-hidden bg-transparent">
             <!-- Navbar -->
-            <nav class="flex justify-between items-center px-4 lg:px-8 py-8 z-20 pointer-events-auto">
-                <div class="flex items-center gap-4 font-bold tracking-tighter"
+            <nav class="flex flex-col md:flex-row justify-between items-center px-4 lg:px-8 py-6 md:py-8 z-20 pointer-events-auto gap-4 md:gap-0">
+                <div class="flex items-center gap-4 font-bold tracking-tighter text-center"
                     style="font-family: 'Archivo', sans-serif; font-stretch: 125%;">
-                    <span class="drop-shadow-md">LAKSHYA KHANDELWAL</span>
+                    <span class="drop-shadow-md text-xl md:text-base">LAKSHYA KHANDELWAL</span>
                 </div>
-                <div class="flex gap-10 items-center text-sm font-medium tracking-wide">
+                <div class="flex flex-wrap justify-center gap-4 md:gap-10 items-center text-xs md:text-sm font-medium tracking-wide">
                     <a href="#about" class="cursor-pointer hover:text-gray-400 transition-colors">About</a>
                     <a href="#about" class="cursor-pointer hover:text-gray-400 transition-colors">Certificates</a>
                     <a href="#projects-target" class="cursor-pointer hover:text-gray-400 transition-colors">Projects</a>
@@ -96,8 +96,8 @@
                 class="flex-1 w-full max-w-[1600px] mx-auto flex items-center relative px-4 lg:px-8 z-20 pointer-events-auto">
 
                 <!-- Left Column -->
-                <div class="w-full flex flex-col relative z-10">
-                    <div class="flex flex-col items-center w-fit"
+                <div class="w-full flex flex-col relative z-10 max-md:mt-[-10vh]">
+                    <div class="flex flex-col items-center w-fit max-md:mx-auto"
                         style="font-family: 'Archivo', sans-serif; font-stretch: 125%;">
                         <h2
                             class="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-white mb-2 uppercase text-center">
@@ -112,23 +112,23 @@
 
                 <!-- Right Column -->
                 <div
-                    class="absolute right-4 lg:right-16 top-1/2 -translate-y-1/2 flex flex-col items-end z-0 text-right">
-                    <h2 class="text-4xl lg:text-[50px] font-black tracking-tighter leading-[0.75] uppercase text-white">
+                    class="absolute max-md:left-1/2 max-md:top-[65%] max-md:-translate-x-1/2 md:right-4 lg:right-16 top-1/2 -translate-y-1/2 flex flex-col max-md:items-center items-end z-0 max-md:text-center text-right max-md:w-full">
+                    <h2 class="text-3xl sm:text-4xl lg:text-[50px] font-black tracking-tighter leading-[0.75] uppercase text-white">
                         A CREATIVE
                     </h2>
                     <h2
-                        class="text-4xl lg:text-[50px] font-black tracking-tighter leading-[0.75] uppercase bg-gradient-to-b from-black via-[#D6C9F5] via-40% to-[#D6C9F5] bg-clip-text text-transparent pb-1">
+                        class="text-3xl sm:text-4xl lg:text-[50px] font-black tracking-tighter leading-[0.75] uppercase bg-gradient-to-b from-black via-[#D6C9F5] via-40% to-[#D6C9F5] bg-clip-text text-transparent pb-1">
                         DESIGNER
                     </h2>
                     <h2
-                        class="text-4xl lg:text-[50px] font-black tracking-tighter leading-[0.75] uppercase bg-gradient-to-b from-black via-white via-40% to-white bg-clip-text text-transparent pb-2">
+                        class="text-3xl sm:text-4xl lg:text-[50px] font-black tracking-tighter leading-[0.75] uppercase bg-gradient-to-b from-black via-white via-40% to-white bg-clip-text text-transparent pb-2">
                         DEVELOPER
                     </h2>
                 </div>
 
                 <!-- Social Logos -->
                 <div
-                    class="absolute bottom-10 right-4 lg:right-16 flex gap-6 items-center text-white pointer-events-auto">
+                    class="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto md:right-4 lg:right-16 flex gap-6 items-center text-white pointer-events-auto">
                     <a href="https://github.com/lakshyak200-pixel" target="_blank"
                         class="hover:text-[#D6C9F5] transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -167,11 +167,11 @@
 
         <!-- Section 2: About Me -->
         <section id="about"
-            class="w-full h-[200vh] px-10 pt-24 pb-[8cm] mt-[200vh] flex items-start justify-end relative pointer-events-auto">
+            class="w-full h-[200vh] px-4 md:px-10 pt-24 pb-[8cm] mt-[200vh] flex items-start justify-center md:justify-end relative pointer-events-auto">
             <div
-                class="w-[90%] md:w-[40%] max-w-[500px] mr-4 lg:mr-10 z-10 flex flex-col gap-24 text-white sticky top-[15vh]">
+                class="w-full md:w-[40%] max-w-[500px] md:mr-4 lg:mr-10 z-10 flex flex-col gap-12 md:gap-24 text-white sticky top-[15vh]">
                 <div>
-                    <h3 class="overlap-text text-3xl md:text-4xl mb-6 font-black uppercase text-[#D6C9F5]"
+                    <h3 class="overlap-text text-3xl md:text-4xl mb-4 md:mb-6 font-black uppercase text-[#D6C9F5]"
                         style="font-family: 'DM Sans', sans-serif;">
                         ABOUT ME
                     </h3>
@@ -210,7 +210,7 @@
         <section id="projects"
             class="w-full h-[300vh] pt-24 pb-32 px-4 md:px-10 relative flex flex-col items-center pointer-events-auto">
             <div id="projects-target" class="absolute w-full top-[120vh] pointer-events-none"></div>
-            <h3 class="overlap-text sec3-title sticky top-[10vh] text-5xl md:text-6xl lg:text-[5.5rem] mb-12 z-20 font-black uppercase text-[#D6C9F5]"
+            <h3 class="overlap-text sec3-title sticky top-[10vh] text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] mb-6 md:mb-12 z-20 font-black uppercase text-[#D6C9F5]"
                 style="font-family: 'DM Sans', sans-serif;">
                 MY PROJECTS
             </h3>
@@ -218,23 +218,23 @@
                 <div
                     class="sec3-grid w-full grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-8 absolute top-0 left-0 pointer-events-auto">
                     <a href="https://farmer-app-pouo.onrender.com/" target="_blank"
-                        class="sec3-card block w-[75%] max-w-[320px] mx-auto aspect-[3/4] bg-[#4B1E8C] rounded-sm p-6 flex flex-col items-center justify-center relative overflow-hidden transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(214,201,245,0.4)] cursor-pointer">
+                        class="sec3-card block w-[90%] md:w-[75%] max-w-[320px] mx-auto max-md:aspect-video aspect-[3/4] bg-[#4B1E8C] rounded-sm p-4 md:p-6 flex flex-col items-center justify-center relative overflow-hidden transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(214,201,245,0.4)] cursor-pointer">
                         <h2
-                            class="text-2xl lg:text-3xl font-black tracking-tighter leading-[1.1] text-center uppercase text-[#F5F3FA] px-2 w-full break-words">
+                            class="text-xl lg:text-3xl font-black tracking-tighter leading-[1.1] text-center uppercase text-[#F5F3FA] px-2 w-full break-words">
                             KHET<br />DRASHTI
                         </h2>
                     </a>
                     <a href="https://dsa-hint.onrender.com/" target="_blank"
-                        class="sec3-card block w-[75%] max-w-[320px] mx-auto aspect-[3/4] bg-[#4B1E8C] rounded-sm p-6 flex flex-col items-center justify-center relative overflow-hidden transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(214,201,245,0.4)] cursor-pointer">
+                        class="sec3-card block w-[90%] md:w-[75%] max-w-[320px] mx-auto max-md:aspect-video aspect-[3/4] bg-[#4B1E8C] rounded-sm p-4 md:p-6 flex flex-col items-center justify-center relative overflow-hidden transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(214,201,245,0.4)] cursor-pointer">
                         <h2
-                            class="text-2xl lg:text-3xl font-black tracking-tighter leading-[1.1] text-center uppercase text-[#F5F3FA] px-2 w-full break-words">
+                            class="text-xl lg:text-3xl font-black tracking-tighter leading-[1.1] text-center uppercase text-[#F5F3FA] px-2 w-full break-words">
                             DSA HINT<br />GENERATOR
                         </h2>
                     </a>
                     <a href="#" target="_blank"
-                        class="sec3-card block w-[75%] max-w-[320px] mx-auto aspect-[3/4] bg-[#4B1E8C] rounded-sm p-6 flex flex-col items-center justify-center relative overflow-hidden transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(214,201,245,0.4)] cursor-pointer">
+                        class="sec3-card block w-[90%] md:w-[75%] max-w-[320px] mx-auto max-md:aspect-video aspect-[3/4] bg-[#4B1E8C] rounded-sm p-4 md:p-6 flex flex-col items-center justify-center relative overflow-hidden transition-all duration-300 hover:scale-105 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(214,201,245,0.4)] cursor-pointer">
                         <h2
-                            class="text-2xl lg:text-3xl font-black tracking-tighter leading-[1.1] text-center uppercase text-[#F5F3FA] px-2 w-full break-words">
+                            class="text-xl lg:text-3xl font-black tracking-tighter leading-[1.1] text-center uppercase text-[#F5F3FA] px-2 w-full break-words">
                             UPCOMING...
                         </h2>
                     </a>
@@ -246,10 +246,10 @@
         <section id="skills" class="w-full h-[400vh] relative pointer-events-auto">
             <div id="section-4-top" class="absolute top-[40vh] left-0 w-full h-1"></div>
             <div
-                class="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-end px-10 md:px-20 pointer-events-none">
+                class="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center md:justify-end px-4 md:px-20 pointer-events-none">
 
-                <div class="sec4-title absolute top-20 w-full left-0 text-center">
-                    <h2 class="overlap-text text-5xl md:text-6xl lg:text-7xl flex justify-center font-black uppercase text-[#D6C9F5]"
+                <div class="sec4-title absolute top-24 md:top-20 w-full left-0 text-center">
+                    <h2 class="overlap-text text-4xl sm:text-5xl md:text-6xl lg:text-7xl flex justify-center font-black uppercase text-[#D6C9F5]"
                         style="font-family: 'DM Sans', sans-serif;">
                         WHAT I KNOW
                     </h2>
@@ -304,12 +304,12 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="w-full py-24 relative pointer-events-auto">
+        <section id="contact" class="w-full py-12 md:py-24 relative pointer-events-auto flex flex-col">
             <div
-                class="absolute top-[2cm] right-10 lg:right-24 text-sm font-medium tracking-wider flex flex-col items-end gap-1 text-white">
+                class="static md:absolute md:top-[2cm] md:right-10 lg:right-24 text-sm font-medium tracking-wider flex flex-col items-center md:items-end gap-1 text-white mb-10 md:mb-0 w-full md:w-auto mt-10 md:mt-0">
                 <a href="mailto:Lakshyak200@gmail.com"
                     class="opacity-70 hover:opacity-100 transition-opacity">Lakshyak200@gmail.com</a>
-                <div class="relative flex justify-end group z-50 pointer-events-auto mt-1">
+                <div class="relative flex justify-center md:justify-end group z-50 pointer-events-auto mt-1">
                     <button
                         class="flex items-center gap-2 opacity-70 hover:opacity-100 transition-all cursor-pointer text-white bg-white/5 hover:bg-white/10 py-1.5 px-3 rounded-sm border border-white/20"
                         title="Click to copy"
@@ -323,15 +323,15 @@
                         </svg>
                     </button>
                     <span
-                        class="absolute -top-8 right-0 text-xs text-[#D6C9F5] opacity-0 transition-opacity duration-300 pointer-events-none whitespace-nowrap bg-black/60 px-2 py-1 rounded">Copied!</span>
+                        class="absolute -top-8 right-0 md:right-0 text-xs text-[#D6C9F5] opacity-0 transition-opacity duration-300 pointer-events-none whitespace-nowrap bg-black/60 px-2 py-1 rounded">Copied!</span>
                 </div>
             </div>
             <div
-                class="w-full flex flex-col md:flex-row items-center justify-end px-10 md:pl-40 lg:pl-64 md:pr-12 lg:pr-32 gap-12 md:gap-16 lg:gap-24 relative">
+                class="w-full flex flex-col md:flex-row items-center justify-center md:justify-end px-4 sm:px-10 md:pl-40 lg:pl-64 md:pr-12 lg:pr-32 gap-12 md:gap-16 lg:gap-24 relative">
                 <div
-                    class="flex flex-col justify-center items-start md:items-end md:text-right h-full flex-1 md:flex-none">
+                    class="flex flex-col justify-center items-center md:items-end text-center md:text-right h-full flex-1 md:flex-none">
                     <h2
-                        class="text-[4rem] sm:text-[5rem] md:text-[6rem] lg:text-[7rem] font-black uppercase tracking-[-0.05em] leading-[0.75] flex flex-col items-start md:items-end mt-4 mb-6 text-white">
+                        class="text-4xl sm:text-[4rem] md:text-[5rem] lg:text-[7rem] font-black uppercase tracking-[-0.05em] leading-[0.85] md:leading-[0.75] flex flex-col items-center md:items-end mt-4 mb-6 text-white">
                         <span class="relative z-[4] drop-shadow-[0_15px_15px_rgba(0,0,0,1)]">WANT TO</span>
                         <span class="text-[#D6C9F5] relative z-[3] drop-shadow-[0_15px_15px_rgba(0,0,0,1)]">START</span>
                         <span class="relative z-[2] drop-shadow-[0_15px_15px_rgba(0,0,0,1)]">A NEW</span>
@@ -378,8 +378,8 @@
                     </div>
                 </form>
             </div>
-            <div class="w-full flex justify-end items-center px-10 py-10 z-20 mt-12">
-                <div class="flex gap-8 items-center text-gray-400 pr-4 lg:pr-10 translate-y-[3cm]">
+            <div class="w-full flex justify-center md:justify-end items-center px-4 sm:px-10 py-10 z-20 mt-8 md:mt-12">
+                <div class="flex gap-6 md:gap-8 items-center text-gray-400 pr-0 md:pr-4 lg:pr-10 translate-y-[1cm] md:translate-y-[3cm]">
                     <a href="https://github.com/lakshyak200-pixel" target="_blank"
                         class="hover:text-white transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -485,9 +485,8 @@
             canvas.style.width = `${window.innerWidth}px`;
             canvas.style.height = `${window.innerHeight}px`;
 
-            // Enable high-quality image smoothing
+            // Use default image smoothing for better performance during scroll
             context.imageSmoothingEnabled = true;
-            context.imageSmoothingQuality = 'high';
 
             render(currentImageIndex);
         }
@@ -498,6 +497,8 @@
         const currentFrame = index => (
             `images/ezgif-frame-${(index + 1).toString().padStart(3, '0')}.jpg`
         );
+        let currentImageIndex = 0;
+        let isRenderPending = false;
 
         // Load the first frame immediately for instant visual feedback
         const firstImg = new Image();
@@ -506,23 +507,36 @@
             images[0] = firstImg;
             resize(); // Initial draw when first image loads
 
-            // Once the first frame is visible, load all remaining frames in the background
-            for (let i = 1; i < frameCount; i++) {
-                const img = new Image();
-                img.onload = () => {
-                    loadedCount++;
-                    // Re-render if the user has scrolled to this frame while it was loading
-                    if (currentImageIndex === i) {
-                        requestAnimationFrame(() => render(currentImageIndex));
-                    }
-                };
-                img.src = currentFrame(i);
-                images[i] = img;
+            // Once the first frame is visible, load all remaining frames in the background in batches
+            let frameToLoad = 1;
+            function loadBatch() {
+                const batchSize = 25;
+                for (let b = 0; b < batchSize && frameToLoad < frameCount; b++, frameToLoad++) {
+                    const img = new Image();
+                    let imgIndex = frameToLoad; // capture current index
+                    img.onload = () => {
+                        loadedCount++;
+                        // Re-render if the user has scrolled to this frame while it was loading
+                        if (currentImageIndex === imgIndex) {
+                            if (!isRenderPending) {
+                                isRenderPending = true;
+                                requestAnimationFrame(() => {
+                                    render(currentImageIndex);
+                                    isRenderPending = false;
+                                });
+                            }
+                        }
+                    };
+                    img.src = currentFrame(imgIndex);
+                    images[imgIndex] = img;
+                }
+                if (frameToLoad < frameCount) {
+                    setTimeout(loadBatch, 50); // Small delay to let browser breathe
+                }
             }
+            loadBatch();
         };
         firstImg.src = currentFrame(0);
-
-        let currentImageIndex = 0;
 
         function render(targetIndex) {
             let imgToDraw = images[targetIndex];
@@ -560,10 +574,11 @@
                 // Cover up watermark with a black circle ONLY when Section 5 starts
                 const contactSec = document.getElementById("contact");
                 if (contactSec) {
-                    const rect = contactSec.getBoundingClientRect();
-                    if (rect.top < window.innerHeight) {
+                    // Use offsetTop instead of getBoundingClientRect() to prevent layout thrashing (massive lag fix)
+                    const rectTop = contactSec.offsetTop - document.documentElement.scrollTop;
+                    if (rectTop < window.innerHeight) {
                         // Smoothly fade it in as Section 5 scrolls up
-                        let alpha = 1 - (rect.top / window.innerHeight);
+                        let alpha = 1 - (rectTop / window.innerHeight);
                         alpha = Math.max(0, Math.min(1, alpha * 2)); // Reaches full opacity halfway up
 
                         const currentDpr = window.devicePixelRatio || 1;
@@ -582,6 +597,8 @@
 
         // Handle Scroll
         window.addEventListener('scroll', () => {
+            if (isRenderPending) return;
+
             const scrollTop = document.documentElement.scrollTop;
             const maxScrollTop = document.documentElement.scrollHeight - window.innerHeight;
 
@@ -595,7 +612,11 @@
 
             if (frameIndex !== currentImageIndex) {
                 currentImageIndex = frameIndex;
-                requestAnimationFrame(() => render(currentImageIndex));
+                isRenderPending = true;
+                requestAnimationFrame(() => {
+                    render(currentImageIndex);
+                    isRenderPending = false;
+                });
             }
         });
 
